@@ -4,19 +4,15 @@ from jogador import Jogador as player
 from mapa import Mapa as map
 from combate import Combate
 
-class Jogo:
-    def __init__(self):
-        self.estado = Movimento()
-    
-    def loop(self):
-        while True:
-         self.estado.atualizar(self)
-
-
 class Movimento:
-    tecla = keyboard.read_key()
-    @staticmethod
-    def movimento(jogo,player,move = tecla, matriz = []):
+
+    def atualizar(self,jogo):
+        tecla = keyboard.read_key()
+        self.movimento(player, tecla, map.mapa2)
+
+
+
+    def movimento(player,move, matriz):
         linha = player.linhaInicial
         coluna = player.colunaInicial
         simbolo = player.simbolo
@@ -26,7 +22,7 @@ class Movimento:
                 try:
                  matriz[linha][coluna] = '.'
                  linha -= 1
-                 Movimento.atualizar(jogo,matriz,linha,coluna)
+                 
                  matriz[linha][coluna] = simbolo
                  player.linhaInicial = linha
                 except IndexError:
@@ -36,7 +32,7 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     linha += 1
-                    Movimento.atualizar(jogo,matriz,linha,coluna)
+                    
                     matriz[linha][coluna] = simbolo
                     player.linhaInicial = linha
                 except IndexError:
@@ -46,7 +42,7 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     coluna -= 1
-                    Movimento.atualizar(jogo,matriz,linha,coluna)
+                    
                     matriz[linha][coluna] = simbolo
                     player.colunaInicial = coluna
                 except IndexError:
@@ -56,7 +52,7 @@ class Movimento:
                 try:
                  matriz[linha][coluna] = '.'
                  coluna += 1
-                 Movimento.atualizar(jogo,matriz,linha,coluna)
+                 
                  matriz[linha][coluna] = simbolo
                  player.colunaInicial = coluna
                 except IndexError:
@@ -70,15 +66,6 @@ class Movimento:
             return True
         return False
     
-    def atualizar(jogo,matriz, linha,coluna):
-      if Movimento.detectar_inimigo(matriz,linha,coluna):
-          jogo.estado = Combate().printinfo(1)
-            
-jogo = Jogo()
-jogador = player(2,1,"#",5)
-
-#Movimento.movimento(jogo,jogador,map.mapa2)
-Jogo().loop()
     
     
 
