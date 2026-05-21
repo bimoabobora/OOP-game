@@ -1,18 +1,20 @@
 import time
 import keyboard
-from jogador import Jogador as player
 from mapa import Mapa as map
 from combate import Combate
+from inimigos import Inimigos
 
 class Movimento:
 
     def atualizar(self,jogo):
         tecla = keyboard.read_key()
-        self.movimento(player, tecla, map.mapa2)
+        if self.movimento(jogo.jogador, tecla, map.mapa2) == True:
+            jogo.inimigo = Inimigos("Orc", 15)
+            jogo.estado = Combate()
 
 
 
-    def movimento(player,move, matriz):
+    def movimento(self,player,move, matriz):
         linha = player.linhaInicial
         coluna = player.colunaInicial
         simbolo = player.simbolo
@@ -23,6 +25,9 @@ class Movimento:
                  matriz[linha][coluna] = '.'
                  linha -= 1
                  
+                 if self.detectar_inimigo(map.mapa2,linha,coluna):
+                     return True
+                 
                  matriz[linha][coluna] = simbolo
                  player.linhaInicial = linha
                 except IndexError:
@@ -32,7 +37,8 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     linha += 1
-                    
+                    if self.detectar_inimigo(map.mapa2,linha,coluna):
+                        return True
                     matriz[linha][coluna] = simbolo
                     player.linhaInicial = linha
                 except IndexError:
@@ -42,7 +48,8 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     coluna -= 1
-                    
+                    if self.detectar_inimigo(map.mapa2,linha,coluna):
+                        return True
                     matriz[linha][coluna] = simbolo
                     player.colunaInicial = coluna
                 except IndexError:
@@ -52,7 +59,8 @@ class Movimento:
                 try:
                  matriz[linha][coluna] = '.'
                  coluna += 1
-                 
+                 if self.detectar_inimigo(map.mapa2,linha,coluna):
+                     return True
                  matriz[linha][coluna] = simbolo
                  player.colunaInicial = coluna
                 except IndexError:
@@ -61,7 +69,7 @@ class Movimento:
         map.printmapa(map.mapa2)
         time.sleep(0.2)
     
-    def detectar_inimigo(matriz,linha,coluna):
+    def detectar_inimigo(self,matriz,linha,coluna):
         if matriz[linha][coluna] != ".":
             return True
         return False

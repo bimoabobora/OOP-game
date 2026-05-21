@@ -1,15 +1,17 @@
-from movimento import Movimento
 
+
+from interface import Interface
 class Jogo:
     def __init__(self):
-        self.estado = Movimento()
+        self.inimigo = None
+        self.jogador = None
+        self.estado = Interface()
 
-    def mudar_estado(self, novoEstado):
-        self.estado = novoEstado
     
     def loop(self):
         while True:
             self.estado.atualizar(self)
+            
             
 
 game = Jogo()
