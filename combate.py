@@ -1,3 +1,5 @@
+from movimento import Movimento
+
 class Combate:
 
     def atualizar(self,jogo):
@@ -16,17 +18,19 @@ class Combate:
             case "1":
                 self.atacar(jogo, jogo.inimigo.vida)
             case "2":
-                self.fugir()
+                self.fugir(jogo)
             case "3":
-                self.conversar()
+                self.conversar(jogo)
     
     def atacar(self, jogo, vidaInimigo):
         vidaInimigo -= jogo.jogador.inventario[0].dano
         jogo.inimigo.vida = vidaInimigo
         print("inimigo atacado com sucesso")
 
-    def fugir(self):
-        pass
+    def fugir(self,jogo):
+        print("Você conseguio fugir.")
+        jogo.estado = Movimento()
 
-    def conversar(self):
-        pass
+
+    def conversar(self,jogo):
+        print(jogo.inimigo.conversa)

@@ -1,5 +1,3 @@
-
-
 from interface import Interface
 class Jogo:
     def __init__(self):

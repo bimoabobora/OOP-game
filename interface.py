@@ -1,5 +1,5 @@
 from jogador import Jogador as player
-from movimento import Movimento
+from movimentoEcombate import Movimento
 
 class Interface:
     def atualizar(self, jogo):
