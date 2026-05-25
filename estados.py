@@ -1,9 +1,12 @@
 from interface import Interface
+from inimigos import Inimigos
+
 class Jogo:
     def __init__(self):
-        self.inimigo = None
+        self.inimigo = Inimigos("#","Dragão Zika das Ideias",10,"EU SER BAVO")
+        Mapa.gerarInimigos(Mapa.mapa1,self.inimigo)
         self.jogador = None
-        self.mapa = Mapa.map1
+        self.mapa = Mapa.mapa1
         self.estado = Interface()
 
     
@@ -12,22 +15,24 @@ class Jogo:
             self.estado.atualizar(self)
      
             
-class Mapa(Jogo):
+class Mapa:
     mapa1 = [['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],]
     
-    mapa2 = [['.',Jogo.inimigo.simbolo,'.'],
+    mapa2 = [['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],]
+    
+    def gerarInimigos(matriz,jogo):
+        matriz[0][1] = jogo.simbolo
     
     def printmapa(matriz):
         for row in matriz:
             print(row)            
 
-game = Jogo()
-game.loop()
+
 
