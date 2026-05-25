@@ -1,4 +1,4 @@
-from movimento import Movimento
+'''from movimento import Movimento
 
 class Combate:
 
@@ -33,4 +33,4 @@ class Combate:
 
 
     def conversar(self,jogo):
-        print(jogo.inimigo.conversa)
+        print(jogo.inimigo.conversa)'''

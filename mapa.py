@@ -1,9 +1,11 @@
-class Mapa:
+
+
+'''class Mapa(Jogo):
     mapa1 = [['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],]
     
-    mapa2 = [['.','@','.'],
+    mapa2 = [['.',Jogo.inimigo.simbolo,'.'],
              ['.','.','.'],
              ['.','.','.'],
              ['.','.','.'],
@@ -12,4 +14,4 @@ class Mapa:
     
     def printmapa(matriz):
         for row in matriz:
-            print(row)
+            print(row)'''

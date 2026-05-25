@@ -1,20 +1,19 @@
 import time
 import keyboard
-from mapa import Mapa as map
-from inimigos import Inimigos
+
 
 class Movimento:
 
     def atualizar(self,jogo):
         #tecla = keyboard.read_key()
         tecla = input("")
-        if self.movimento(jogo.jogador, tecla, map.mapa2) == True:
-            jogo.inimigo = Inimigos("Orc", 15, "Eu sou o orc bavo")
+        if self.movimento(jogo.jogador, tecla, jogo.mapa) == True:
             jogo.estado = Combate()
 
 
 
     def movimento(self,player,move, matriz):
+        from estados import Mapa as map
         linha = player.linhaInicial
         coluna = player.colunaInicial
         simbolo = player.simbolo
