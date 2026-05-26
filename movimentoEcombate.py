@@ -1,18 +1,22 @@
 import time
-#import keyboard
+import keyboard
+import os
 from inventario import Inventario
 
 
 class Movimento:
 
     def atualizar(self,jogo):
-        #tecla = keyboard.read_key()
-        tecla = input("")
+        tecla = keyboard.read_key()
+        #tecla = input("")
         self.movimento(jogo.jogador, tecla, jogo.mapa, jogo)
 
 
 
     def movimento(self,player,move, matriz,jogo):
+
+        os.system('cls')
+
         from estados import Mapa as map
         linha = player.linhaInicial
         coluna = player.colunaInicial
@@ -106,6 +110,7 @@ class Combate:
 
 
     def printinfo(self,jogo):
+        os.system('cls')
         print()
         print("#")
         print(jogo.inimigo.nome)
