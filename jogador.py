@@ -1,3 +1,5 @@
+from itens import Itens
+item = Itens("Espada", "Espada super daora","Fisico",5)
 
 class Jogador():
     def __init__(self, linhaInicial: int, colunaInicial: int, simbolo: str, hp: int):
@@ -5,7 +7,8 @@ class Jogador():
         self.colunaInicial = colunaInicial
         self.simbolo = simbolo
         self.hp = hp
-        self.inventario = []
+        self.inventario = [item]
+        self.equipamento = None
     
     def pegar_itens(self):
         if self.inventario != None: 

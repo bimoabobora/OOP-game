@@ -1,5 +1,6 @@
 import time
-import keyboard
+#import keyboard
+from inventario import Inventario
 
 
 class Movimento:
@@ -81,6 +82,9 @@ class Movimento:
                     coluna -= 1
                     matriz[linha][coluna] = simbolo
 
+            case "e":
+                jogo.estado = Inventario()
+
         map.printmapa(matriz)
         time.sleep(0.2)
     
@@ -119,7 +123,7 @@ class Combate:
                 self.conversar(jogo)
     
     def atacar(self, jogo, vidaInimigo):
-        vidaInimigo -= jogo.jogador.inventario[0].dano
+        vidaInimigo -= jogo.jogador.equipamento.dano
         jogo.inimigo.vida = vidaInimigo
         print("inimigo atacado com sucesso")
         if jogo.inimigo.vida <= 0:
