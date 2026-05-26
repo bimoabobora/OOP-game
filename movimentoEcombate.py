@@ -23,7 +23,10 @@ class Movimento:
                  matriz[linha][coluna] = '.'
                  linha -= 1
                  
-                 if self.detectar_inimigo(map.mapa1,linha,coluna):
+                 if self.detectar_item(matriz,linha,coluna):
+                     player.inventario.append(jogo.item)
+
+                 if self.detectar_inimigo(matriz,linha,coluna):
                      jogo.estado = Combate()
                  
                  matriz[linha][coluna] = simbolo
@@ -35,8 +38,13 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     linha += 1
-                    if self.detectar_inimigo(map.mapa1,linha,coluna):
+
+                    if self.detectar_item(matriz,linha,coluna):
+                     player.inventario.append(jogo.item)
+
+                    if self.detectar_inimigo(matriz,linha,coluna):
                         jogo.estado = Combate()
+
                     matriz[linha][coluna] = simbolo
                     player.linhaInicial = linha
                 except IndexError:
@@ -46,7 +54,11 @@ class Movimento:
                 try:
                     matriz[linha][coluna] = '.'
                     coluna -= 1
-                    if self.detectar_inimigo(map.mapa1,linha,coluna):
+
+                    if self.detectar_item(matriz,linha,coluna):
+                     player.inventario.append(jogo.item)
+
+                    if self.detectar_inimigo(matriz,linha,coluna):
                         jogo.estado = Combate()
                     matriz[linha][coluna] = simbolo
                     player.colunaInicial = coluna
@@ -56,19 +68,29 @@ class Movimento:
             case "d":
                 try:
                  matriz[linha][coluna] = '.'
-                 coluna += 1
-                 if self.detectar_inimigo(map.mapa1,linha,coluna):
+                 coluna += 1   
+
+                 if self.detectar_item(matriz,linha,coluna):
+                     player.inventario.append(jogo.item)
+
+                 if self.detectar_inimigo(matriz,linha,coluna):
                      jogo.estado = Combate()
                  matriz[linha][coluna] = simbolo
                  player.colunaInicial = coluna
                 except IndexError:
                     coluna -= 1
                     matriz[linha][coluna] = simbolo
-        map.printmapa(map.mapa1)
+
+        map.printmapa(matriz)
         time.sleep(0.2)
     
     def detectar_inimigo(self,matriz,linha,coluna):
-        if matriz[linha][coluna] != ".":
+        if matriz[linha][coluna] == "#":
+            return True
+        return False
+    
+    def detectar_item(self,matriz,linha,coluna):
+        if matriz[linha][coluna] == "*":
             return True
         return False
     
